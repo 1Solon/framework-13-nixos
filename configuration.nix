@@ -119,7 +119,7 @@ in
   };
 
   # Enable store optimization
-  nix.optimizeStore = true;
+  nix.optimise.automatic = true;
 
   # Enable networking
   networking.networkmanager.enable = true;
