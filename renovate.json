@@ -10,13 +10,6 @@
   "labels": ["dependencies"],
   "assignees": ["1Solon"],
   "reviewers": ["1Solon"],
-  "nix": {
-    "enabled": true
-  },
-  "lockFileMaintenance": {
-    "enabled": true,
-    "automerge": false
-  },
   "prConcurrentLimit": 3,
   "prHourlyLimit": 2,
   "vulnerabilityAlerts": {
