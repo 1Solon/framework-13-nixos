@@ -111,6 +111,16 @@ in
     "flakes"
   ];
 
+  # Enable garbage collection
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
+  # Enable store optimization
+  nix.optimizeStore = true;
+
   # Enable networking
   networking.networkmanager.enable = true;
   networking.hostName = "sauls-laptop";
