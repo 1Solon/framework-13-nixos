@@ -6,68 +6,12 @@
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
   "rebaseWhen": "conflicted",
-  "schedule": [
-    "after 5pm every weekday",
-    "before 9am every weekday",
-    "every weekend"
-  ],
   "timezone": "Europe/Dublin",
   "labels": ["dependencies"],
   "assignees": ["1Solon"],
   "reviewers": ["1Solon"],
-  "lockFileMaintenance": {
-    "enabled": true,
-    "schedule": [
-      "after 5pm every weekday",
-      "before 9am every weekday",
-      "every weekend"
-    ]
-  },
-  "packageRules": [
-    {
-      "description": "Nix flake inputs",
-      "matchManagers": ["nix"],
-      "automerge": false,
-      "minimumReleaseAge": "3 days",
-      "prPriority": 10,
-      "groupName": "nix flake inputs",
-      "separateMinorPatch": false,
-      "postUpdateOptions": ["nix-flake-update"]
-    },
-    {
-      "description": "Group nixpkgs updates",
-      "matchManagers": ["nix"],
-      "matchPackageNames": ["nixpkgs"],
-      "groupName": "nixpkgs",
-      "automerge": false,
-      "schedule": ["every weekend"]
-    },
-    {
-      "description": "Group home-manager updates",
-      "matchManagers": ["nix"],
-      "matchPackageNames": ["home-manager"],
-      "groupName": "home-manager",
-      "automerge": false
-    },
-    {
-      "description": "Group nixos-hardware updates",
-      "matchManagers": ["nix"],
-      "matchPackageNames": ["nixos-hardware"],
-      "groupName": "nixos-hardware",
-      "automerge": false
-    },
-    {
-      "description": "Custom flake inputs (zen-browser, silentSDDM, hyprshell)",
-      "matchManagers": ["nix"],
-      "matchPackageNames": ["zen-browser", "silentSDDM", "hyprshell"],
-      "groupName": "custom flake inputs",
-      "automerge": false,
-      "minimumReleaseAge": "7 days"
-    }
-  ],
   "nix": {
-    "enabled": true,
-    "updateType": "nix-flake-update"
+    "enabled": true
   },
   "prConcurrentLimit": 3,
   "prHourlyLimit": 2,
