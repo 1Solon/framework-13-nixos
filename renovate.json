@@ -31,7 +31,8 @@
       "minimumReleaseAge": "3 days",
       "prPriority": 10,
       "groupName": "nix flake inputs",
-      "separateMinorPatch": false
+      "separateMinorPatch": false,
+      "updateType": "nix-flake-lock"
     },
     {
       "description": "Group nixpkgs updates",
