@@ -5,7 +5,6 @@
   "platformAutomerge": false,
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
-  "rebaseWhen": "conflicted",
   "schedule": [
     "after 5pm every weekday",
     "before 9am every weekday",
