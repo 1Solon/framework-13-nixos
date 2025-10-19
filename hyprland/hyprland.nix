@@ -112,7 +112,7 @@ in
         "[workspace special:thunderbird silent] thunderbird"
 
         # Tray apps
-        "trayscale"
+        "trayscale --hide-window"
       ];
 
       input = {
