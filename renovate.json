@@ -5,6 +5,7 @@
   "platformAutomerge": false,
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
+  "rebaseWhen": "conflicted",
   "schedule": [
     "after 5pm every weekday",
     "before 9am every weekday",
@@ -64,7 +65,8 @@
     }
   ],
   "nix": {
-    "enabled": true
+    "enabled": true,
+    "updateType": "nix-flake-update"
   },
   "prConcurrentLimit": 3,
   "prHourlyLimit": 2,
