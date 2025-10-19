@@ -116,6 +116,17 @@ in
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 7d";
+    persistent = true; # Run on next boot if timer was missed
+  };
+
+  # Enable auto upgrade from my github repo
+  system.autoUpgrade = {
+    enable = true;
+    allowReboot = false;
+    dates = "daily";
+    randomizedDelaySec = "1h";
+    flake = "github:1Solon/framework-13-nixos";
+    persistent = true; # Run on next boot if timer was missed
   };
 
   # Enable store optimization
