@@ -142,8 +142,8 @@ in
   # Enable Tailscale VPN
   services.tailscale.enable = true;
 
-  # Set time zone.
-  time.timeZone = "Europe/Dublin";
+  # Set time zone. (automatically!)
+  services.automatic-timezoned.enable = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
