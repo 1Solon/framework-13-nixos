@@ -32,7 +32,7 @@
       "prPriority": 10,
       "groupName": "nix flake inputs",
       "separateMinorPatch": false,
-      "updateType": "nix-flake-lock"
+      "postUpdateOptions": ["nix-flake-update"]
     },
     {
       "description": "Group nixpkgs updates",
