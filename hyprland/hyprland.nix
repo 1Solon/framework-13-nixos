@@ -143,7 +143,6 @@ in
         "${mod}, R, exec, wofi --show drun"
 
         # Window controls
-        "${mod}, M, exit,"
         "${mod}, C, killactive,"
         "${mod}, F, fullscreen, 0"
         "${mod}, V, togglefloating,"
