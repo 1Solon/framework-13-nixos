@@ -75,6 +75,11 @@
     ferdium
     nautilus
 
+    # Office
+    libreoffice-qt
+    hunspell
+    hunspellDicts.en_GB-large
+
     # Communication
     discord
     thunderbird
