@@ -42,6 +42,7 @@
     k9s
     kubectl
     talosctl
+    fluxcd
 
     # Containers
     docker
