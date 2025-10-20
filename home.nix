@@ -73,6 +73,7 @@
 
     # Tools
     ferdium
+    nautilus
 
     # Communication
     discord
