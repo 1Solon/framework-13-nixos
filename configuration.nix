@@ -126,6 +126,7 @@ in
     dates = "daily";
     randomizedDelaySec = "1h";
     flake = "github:1Solon/framework-13-nixos";
+    flags = [ "--impure" ];
     persistent = true; # Run on next boot if timer was missed
   };
 
