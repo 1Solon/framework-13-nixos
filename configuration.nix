@@ -49,6 +49,8 @@ in
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  # Limit number of boot entries (nix generations, it's annoying)
+  boot.loader.systemd-boot.configurationLimit = 5;
 
   # Enable Amd microcode updates
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
@@ -114,7 +116,7 @@ in
   # Enable garbage collection
   nix.gc = {
     automatic = true;
-    dates = "weekly";
+    dates = "daily";
     options = "--delete-older-than 7d";
     persistent = true; # Run on next boot if timer was missed
   };
