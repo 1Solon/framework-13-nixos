@@ -75,9 +75,10 @@
     # Tools
     ferdium
     nautilus
+    loupe
 
     # Office
-    libreoffice-qt
+    libreoffice
     hunspell
     hunspellDicts.en_GB-large
 
