@@ -7,18 +7,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: action-deploy-key
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ssh-key: ${{ secrets.KEY }}
-          persist-credentials: false
-      - uses: cachix/install-nix-action@v31
+      - uses: cachix/install-nix-action@v30
       - run: nix flake update
-      - uses: stefanzweifel/git-auto-commit-action@v7
+      - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore(deps): bump flake.lock"
           commit_user_name: Flake Bot Update
