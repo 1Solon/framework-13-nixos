@@ -1,0 +1,26 @@
+name: cron Update flake.lock
+on:
+  schedule:
+    # Run every day at 4:00 AM
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: cachix/install-nix-action@v30
+      - run: nix flake update
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(deps): bump flake.lock"
+          commit_user_name: Flake Bot Update
+          commit_author: Flake Bot Update <actions@github.com>
+          branch: main
+          file_pattern: flake.lock
+          skip_dirty_check: false
+          skip_fetch: true
