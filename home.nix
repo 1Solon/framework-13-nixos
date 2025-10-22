@@ -25,6 +25,7 @@
 
     # External imports
     inputs.zen-browser.homeModules.beta
+    inputs.hyprshell.homeModules.hyprshell
   ];
 
   home.packages = with pkgs; [
@@ -133,6 +134,22 @@
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       gtk-theme = "Adwaita-dark";
+    };
+  };
+
+  # Hyprshell
+  programs.hyprshell = {
+    enable = true;
+    styleFile = builtins.readFile ./hyprland/hyprshell/style.css;
+    settings = {
+      windows = {
+        enable = true; # must be enabled for any window modes
+        switch = {
+          enable = true;
+          # Alt+Tab to open the switcher
+          modifier = "alt";
+        };
+      };
     };
   };
 }

@@ -140,7 +140,7 @@ in
         "${mod}, Q, exec, alacritty"
 
         # App launcher
-        "${mod}, R, exec, wofi --show drun"
+        "${mod}, tab, exec, wofi --show drun"
 
         # Window controls
         "${mod}, C, killactive,"
