@@ -140,7 +140,10 @@ in
   };
 
   # Enable Tailscale VPN
-  services.tailscale.enable = true;
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client";
+  };
 
   # Set time zone. (automatically!)
   services.automatic-timezoned.enable = true;
