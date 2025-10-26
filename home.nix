@@ -13,13 +13,13 @@
 
   imports = [
     # Subfile imports
-    ./programs/zen.nix
-    ./programs/git.nix
-    ./programs/github-cli.nix
-    ./programs/zsh.nix
-    ./programs/starship.nix
-    ./programs/alacritty.nix
-    ./programs/vscode.nix
+    ./userspace/zen.nix
+    ./userspace/git.nix
+    ./userspace/github-cli.nix
+    ./userspace/zsh.nix
+    ./userspace/starship.nix
+    ./userspace/alacritty.nix
+    ./userspace/vscode.nix
     ./hyprland/hyprland.nix
     ./hyprland/wofi/config.nix
 
@@ -44,6 +44,7 @@
     kubectl
     talosctl
     fluxcd
+    cilium-cli
 
     # Containers
     docker
@@ -72,6 +73,7 @@
     btop
     htop
     gcr
+    unzip
 
     # Tools
     ferdium
@@ -101,6 +103,9 @@
     fastfetch
     blueman
     hyprcursor
+
+    # Games
+    starsector
 
   ];
 
