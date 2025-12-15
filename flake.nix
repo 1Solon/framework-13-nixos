@@ -42,11 +42,6 @@
             # Hardware specific configuration for Framework 13
             nixos-hardware.nixosModules.framework-amd-ai-300-series
 
-            # hyprshell
-            {
-              environment.systemPackages = [ hyprshell.packages.x86_64-linux.hyprshell ];
-            }
-
             # Home Manager module
             home-manager.nixosModules.home-manager
             {

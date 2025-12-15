@@ -1,0 +1,55 @@
+* {
+  font-family: "Monospace Neon", monospace;
+}
+
+:root {
+  /* Colors */
+  --bg-color: rgba(42, 42, 42, 0.90);          /* @background */
+  --bg-color-hover: rgba(48, 48, 48, 0.95);
+  --text-color: #d3d3d3;                        /* @foreground */
+
+  /* Borders */
+  --border-radius: 12px;
+  --border-size: 0px; /* disable borders */
+  --border-style: none; /* disable borders */
+  --border-color: rgba(192, 192, 192, 0.40);   /* @color7 */
+  --border-color-active: rgba(192, 192, 192, 0.95); /* silver to match @color7 */
+
+  /* Layout */
+  --window-padding: 6px;
+}
+
+/* Subtle shadows similar to Waybar widgets */
+.monitor,
+.workspace,
+.client {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
+  /* remove default borders everywhere */
+  border-style: none;
+  border-width: 0;
+}
+
+/* Hover state for window tiles */
+.client:hover {
+  background: var(--bg-color-hover);
+}
+
+/* Border for active item */
+.client.active,
+.workspace.active {
+  border: 2px solid var(--border-color-active, rgba(192, 192, 192, 0.95));
+  box-shadow: 0 0 10px rgba(192, 192, 192, 0.25);
+}
+
+/* Tooltips theme */
+tooltip {
+  background: var(--bg-color);
+  color: var(--text-color);
+  border-radius: var(--border-radius);
+  border: none;
+}
+
+/* Launcher tweaks */
+.large-icons { /* launcher icon size */
+  -gtk-icon-size: 32px;
+}

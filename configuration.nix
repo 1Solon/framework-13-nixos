@@ -49,6 +49,8 @@ in
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  # Limit number of boot entries (nix generations, it's annoying)
+  boot.loader.systemd-boot.configurationLimit = 5;
 
   # Enable Amd microcode updates
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
@@ -83,7 +85,7 @@ in
 
   # Lid close settings
   services.logind.settings.Login = {
-    HandleLidSwitch = "suspend";
+    HandleLidSwitch = "suspend-then-hibernate";
     HandleLidSwitchExternalPower = "suspend";
     HandleLidSwitchDocked = "ignore";
   };
@@ -106,6 +108,28 @@ in
     "flakes"
   ];
 
+  # Enable garbage collection
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-older-than 7d";
+    persistent = true; # Run on next boot if timer was missed
+  };
+
+  # Enable auto upgrade from my github repo
+  system.autoUpgrade = {
+    enable = true;
+    allowReboot = false;
+    dates = "daily";
+    randomizedDelaySec = "1h";
+    flake = "github:1Solon/framework-13-nixos";
+    flags = [ "--impure" ];
+    persistent = true; # Run on next boot if timer was missed
+  };
+
+  # Enable store optimization
+  nix.optimise.automatic = true;
+
   # Enable networking
   networking.networkmanager.enable = true;
   networking.hostName = "sauls-laptop";
@@ -114,10 +138,13 @@ in
   };
 
   # Enable Tailscale VPN
-  services.tailscale.enable = true;
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client";
+  };
 
-  # Set time zone.
-  time.timeZone = "Europe/Dublin";
+  # Set time zone. (automatically!)
+  services.automatic-timezoned.enable = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";

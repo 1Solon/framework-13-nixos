@@ -13,18 +13,19 @@
 
   imports = [
     # Subfile imports
-    ./programs/zen.nix
-    ./programs/git.nix
-    ./programs/github-cli.nix
-    ./programs/zsh.nix
-    ./programs/starship.nix
-    ./programs/alacritty.nix
-    ./programs/vscode.nix
+    ./userspace/zen.nix
+    ./userspace/git.nix
+    ./userspace/github-cli.nix
+    ./userspace/zsh.nix
+    ./userspace/starship.nix
+    ./userspace/alacritty.nix
+    ./userspace/vscode.nix
     ./hyprland/hyprland.nix
     ./hyprland/wofi/config.nix
 
     # External imports
     inputs.zen-browser.homeModules.beta
+    inputs.hyprshell.homeModules.hyprshell
   ];
 
   home.packages = with pkgs; [
@@ -42,6 +43,8 @@
     k9s
     kubectl
     talosctl
+    fluxcd
+    cilium-cli
 
     # Containers
     docker
@@ -70,9 +73,17 @@
     btop
     htop
     gcr
+    unzip
 
     # Tools
     ferdium
+    nautilus
+    loupe
+
+    # Office
+    libreoffice
+    hunspell
+    hunspellDicts.en_GB-large
 
     # Communication
     discord
@@ -92,6 +103,9 @@
     fastfetch
     blueman
     hyprcursor
+
+    # Games
+    starsector
 
   ];
 
@@ -125,6 +139,22 @@
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       gtk-theme = "Adwaita-dark";
+    };
+  };
+
+  # Hyprshell
+  programs.hyprshell = {
+    enable = true;
+    styleFile = builtins.readFile ./hyprland/hyprshell/style.css;
+    settings = {
+      windows = {
+        enable = true; # must be enabled for any window modes
+        switch = {
+          enable = true;
+          # Alt+Tab to open the switcher
+          modifier = "alt";
+        };
+      };
     };
   };
 }

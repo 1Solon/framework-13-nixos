@@ -2,9 +2,11 @@
   # Git configuration
   programs.git = {
     enable = true;
-    userName = "1Solon";
-    userEmail = "Solonerus@gmail.com";
-    extraConfig = {
+    settings = {
+      user = {
+        name = "1Solon";
+        email = "Solonerus@gmail.com";
+      };
       "protocol.https".allow = "always";
       "push".autoSetupRemote = true;
       "init".defaultBranch = "main";
