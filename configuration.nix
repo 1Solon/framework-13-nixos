@@ -225,7 +225,7 @@
 
   # Mount NFS shares from TrueNAS
   fileSystems."/home/saul/nfs" = {
-    device = "192.168.1.111:/mnt/STORAGE-01/Media-Storage";
+    device = "192.168.1.152:/mnt/STORAGE-01/Media-Storage";
     fsType = "nfs";
     options = [
       "x-systemd.automount"
