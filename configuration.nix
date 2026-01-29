@@ -6,40 +6,6 @@
   ...
 }:
 
-let
-  # Sddm theme configuration
-  sddm-theme = pkgs.where-is-my-sddm-theme.override {
-    themeConfig.General = {
-      background = "${./static/wallpaper.jpg}";
-      backgroundFillMode = "aspect";
-
-      basicTextColor = "#d3d3d3";
-      passwordTextColor = "#f5f5f5";
-      passwordCursorColor = "#c0c0c0";
-      passwordInputBackground = "#2a2a2a";
-
-      passwordInputWidth = "0.35";
-      passwordInputRadius = "10";
-      passwordMask = true;
-      passwordCharacter = "*";
-      passwordFontSize = 72;
-      passwordInputCursorVisible = true;
-
-      hideCursor = true;
-      cursorBlinkAnimation = true;
-      showSessionsByDefault = false;
-      showUsersByDefault = false;
-
-      font = "Monaspace Neon"; # Match your terminal font
-      helpFont = "Monaspace Neon";
-      sessionsFontSize = 20;
-      usersFontSize = 40;
-      helpFontSize = 16;
-
-      blurRadius = 15;
-    };
-  };
-in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -99,7 +65,6 @@ in
     su.fprintAuth = true; # Enable fingerprint for su
     sddm.fprintAuth = false; # Keep for SDDM
     login.fprintAuth = false; # Keep for login
-    hyprland.fprintAuth = false; # Keep for Hyprland
   };
 
   # Enable flakes
@@ -143,6 +108,9 @@ in
     useRoutingFeatures = "client";
   };
 
+  # Enable geolocation services for GNOME
+  services.geoclue2.enable = true;
+
   # Set time zone. (automatically!)
   services.automatic-timezoned.enable = true;
 
@@ -161,22 +129,13 @@ in
     LC_TIME = "en_IE.UTF-8";
   };
 
-  # Enable Qt for SDDM theme
-  qt.enable = true;
+  # Enable GDM Display Manager for GNOME
+  services.displayManager.gdm.enable = true;
+  services.displayManager.gdm.wayland = true;
 
-  # Enable SDDM Display Manager with Where Is My SDDM theme
-  services.displayManager.sddm = {
-    package = pkgs.kdePackages.sddm; # use qt6 version of sddm
-    enable = true;
-    wayland.enable = true;
-    theme = "where_is_my_sddm_theme";
-    extraPackages = [ sddm-theme ];
-    settings = {
-      General = {
-        scale = 10;
-      };
-    };
-  };
+  # Enable GNOME
+  services.xserver.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # Configure console keymap
   console.keyMap = "uk";
@@ -209,11 +168,11 @@ in
   hardware.framework.laptop13.audioEnhancement.rawDeviceName =
     lib.mkDefault "alsa_output.pci-0000_c1_00.6.analog-stereo";
 
-  # Enable XDG Desktop Portal for screen/audio sharing in browsers (Wayland/Hyprland)
+  # Enable XDG Desktop Portal for screen/audio sharing in browsers (Wayland/GNOME)
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
-      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gnome
       xdg-desktop-portal-gtk
     ];
     config.common.default = "*";
@@ -251,11 +210,6 @@ in
     trayscale
     vscode
     wget
-    foot
-    waybar
-    hyprpaper
-    xorg.xbacklight
-    sddm-theme
   ];
 
   # Zen / 1Password stuff
@@ -298,12 +252,6 @@ in
 
   # Enable docker
   virtualisation.docker.enable = true;
-
-  # Enable hyprland
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
 
   system.stateVersion = "25.05";
 }

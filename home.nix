@@ -20,12 +20,9 @@
     ./userspace/starship.nix
     ./userspace/alacritty.nix
     ./userspace/vscode.nix
-    ./hyprland/hyprland.nix
-    ./hyprland/wofi/config.nix
 
     # External imports
     inputs.zen-browser.homeModules.beta
-    inputs.hyprshell.homeModules.hyprshell
   ];
 
   home.packages = with pkgs; [
@@ -93,16 +90,9 @@
     # Fonts
     monaspace
 
-    # Hyprland dependencies
-    grim
-    slurp
-    wl-clipboard
-    swaynotificationcenter
-    libnotify
-    wofi
+    # Utilities
     fastfetch
     blueman
-    hyprcursor
 
     # Games
     starsector
@@ -134,27 +124,11 @@
     x11.enable = true;
   };
 
-  # Set dark theme preference for GNOME applications
+  # Set dark theme preference for KDE/GNOME applications
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       gtk-theme = "Adwaita-dark";
-    };
-  };
-
-  # Hyprshell
-  programs.hyprshell = {
-    enable = true;
-    styleFile = builtins.readFile ./hyprland/hyprshell/style.css;
-    settings = {
-      windows = {
-        enable = true; # must be enabled for any window modes
-        switch = {
-          enable = true;
-          # Alt+Tab to open the switcher
-          modifier = "alt";
-        };
-      };
     };
   };
 }
