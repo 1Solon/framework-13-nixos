@@ -75,9 +75,11 @@
     unzip
 
     # Tools
+    chromium
     ferdium
     nautilus
     loupe
+    playwright
 
     # Office
     libreoffice
