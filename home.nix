@@ -19,7 +19,6 @@
     ./userspace/zsh.nix
     ./userspace/starship.nix
     ./userspace/alacritty.nix
-    ./userspace/vscode.nix
 
     # External imports
     inputs.zen-browser.homeModules.beta
@@ -27,7 +26,6 @@
 
   home.packages = with pkgs; [
     # Editors
-    # vscode is now managed via programs/vscode.nix
     zed-editor
 
     # Version control

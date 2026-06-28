@@ -23,7 +23,7 @@
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  
+
   # Enable BIOS updates
   services.fwupd.enable = true;
 
@@ -215,7 +215,6 @@
     nfs-utils
     tailscale
     trayscale
-    vscode
     wget
   ];
 
