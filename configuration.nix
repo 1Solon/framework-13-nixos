@@ -110,9 +110,14 @@
 
   # Enable geolocation services for GNOME
   services.geoclue2.enable = true;
+  services.geoclue2.whitelistedAgents = lib.mkForce [ "geoclue-demo-agent" ];
 
-  # Set time zone. (automatically!)
+  # Set time zone automatically based on location.
   services.automatic-timezoned.enable = true;
+  systemd.services.automatic-timezoned.serviceConfig = {
+    Restart = "on-failure";
+    RestartSec = "30s";
+  };
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
@@ -131,7 +136,6 @@
 
   # Enable GDM Display Manager for GNOME
   services.displayManager.gdm.enable = true;
-  services.displayManager.gdm.wayland = true;
 
   # Enable GNOME
   services.xserver.enable = true;
@@ -147,6 +151,9 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
+
+  # Enable GNOME Keyring PAM integration
+  security.pam.services.gdm.enableGnomeKeyring = true;
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -230,6 +237,8 @@
     options = [
       "x-systemd.automount"
       "noauto"
+      "nofail"
+      "x-systemd.mount-timeout=10s"
     ];
   };
 

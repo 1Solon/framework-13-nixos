@@ -28,6 +28,7 @@
   home.packages = with pkgs; [
     # Editors
     # vscode is now managed via programs/vscode.nix
+    zed-editor
 
     # Version control
     git
@@ -52,6 +53,7 @@
     zsh-autocomplete
     starship
     tmux
+    codex
 
     # Languages & toolchains
     cue
@@ -62,7 +64,7 @@
     # Build & task runners
     go-task
     gnumake
-    nixfmt-rfc-style
+    nixfmt
 
     # System utilities
     xdg-utils
@@ -113,6 +115,7 @@
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
     };
+    gtk4.theme = config.gtk.theme;
   };
 
   # Configure cursor theme for Wayland/Hyprland
