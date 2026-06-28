@@ -64,6 +64,8 @@
     # Build & task runners
     go-task
     gnumake
+    nil
+    nixd
     nixfmt
 
     # System utilities
