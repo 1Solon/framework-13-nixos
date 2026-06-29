@@ -68,10 +68,43 @@
           platforms = pkgs.lib.platforms.linux;
         };
       };
+      winsur-kde-theme = pkgs.stdenvNoCC.mkDerivation {
+        pname = "winsur-kde-theme";
+        version = "2026-06-29";
+
+        src = pkgs.fetchzip {
+          url = "https://github.com/yeyushengfan258/WinSur-kde/archive/ef2a65c2fbeee3f5e7d5cc7472646b370ff4050e.tar.gz";
+          hash = "sha256-DpuseusaVRvoursutUKjERm95rjd9tmZ4rGsjz13WOo=";
+        };
+
+        installPhase = ''
+          install -d \
+            $out/share/aurorae/themes \
+            $out/share/color-schemes \
+            $out/share/Kvantum \
+            $out/share/plasma/desktoptheme \
+            $out/share/plasma/look-and-feel \
+            $out/share/wallpapers
+
+          cp -r aurorae/* $out/share/aurorae/themes/
+          cp -r color-schemes/*.colors $out/share/color-schemes/
+          cp -r Kvantum/* $out/share/Kvantum/
+          cp -r plasma/desktoptheme/* $out/share/plasma/desktoptheme/
+          cp -r plasma/look-and-feel/* $out/share/plasma/look-and-feel/
+          cp -r wallpaper/* $out/share/wallpapers/
+        '';
+
+        meta = {
+          description = "WinSur KDE Plasma theme";
+          homepage = "https://github.com/yeyushengfan258/WinSur-kde";
+          license = pkgs.lib.licenses.gpl3Plus;
+          platforms = pkgs.lib.platforms.linux;
+        };
+      };
     in
     {
       packages.${system} = {
-        inherit otto-kde-theme;
+        inherit otto-kde-theme winsur-kde-theme;
       };
 
       nixosConfigurations = {

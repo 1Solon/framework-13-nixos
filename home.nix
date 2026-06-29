@@ -2,11 +2,12 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }:
 
 let
-  ottoKdeTheme = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.otto-kde-theme;
+  winsurKdeTheme = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.winsur-kde-theme;
 in
 {
   home.username = "saul";
@@ -85,7 +86,7 @@ in
     kdePackages.gwenview
     kdePackages.qtstyleplugin-kvantum
     libsForQt5.qtstyleplugin-kvantum
-    ottoKdeTheme
+    winsurKdeTheme
     playwright
 
     # Office
@@ -110,49 +111,14 @@ in
 
   ];
 
-  # Align GTK applications with KDE Plasma.
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Breeze-Dark";
-      package = pkgs.kdePackages.breeze-gtk;
-    };
-    iconTheme = {
-      name = "breeze-dark";
-      package = pkgs.kdePackages.breeze-icons;
-    };
-    gtk4.theme = config.gtk.theme;
-  };
-
-  qt = {
-    enable = true;
-    platformTheme.name = "kde";
-    style.name = "kvantum";
-  };
-
   programs.plasma = {
     enable = true;
     workspace = {
-      lookAndFeel = "Otto";
-      theme = "Otto";
-      colorScheme = "Otto";
+      lookAndFeel = "com.github.yeyushengfan258.WinSur-dark";
+      theme = "WinSur-dark";
+      colorScheme = "WinSurDark";
       widgetStyle = "kvantum";
-      wallpaper = "${ottoKdeTheme}/share/wallpapers/Otto/contents/images/3840x2160.png";
+      wallpaper = "${winsurKdeTheme}/share/wallpapers/WinSur-dark/contents/images/2560x1440.png";
     };
   };
-
-  xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
-    [General]
-    theme=Otto
-  '';
-
-  # Configure cursor theme for Wayland.
-  home.pointerCursor = {
-    name = "Bibata-Modern-Classic";
-    package = pkgs.bibata-cursors;
-    size = 24;
-    gtk.enable = true;
-    x11.enable = true;
-  };
-
 }
