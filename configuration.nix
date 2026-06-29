@@ -139,16 +139,8 @@
   };
 
   # Enable GNOME.
-  services.xserver.enable = true;
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
-
-  # Keep Chromium/Electron and Mozilla apps on the native Wayland path.
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
-    MOZ_ENABLE_WAYLAND = "1";
-  };
 
   # Configure console keymap
   console.keyMap = "uk";
@@ -230,6 +222,7 @@
     enable = true;
     localNetworkGameTransfers.openFirewall = true;
   };
+  hardware.steam-hardware.enable = true;
 
   # Enable 1password
   programs._1password.enable = true;
