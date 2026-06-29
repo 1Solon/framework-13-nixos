@@ -92,7 +92,9 @@
     hunspellDicts.en_GB-large
 
     # Communication
-    discord
+    (discord.override {
+      commandLineArgs = "--force-device-scale-factor=1.6666666 --gtk-version=4 --enable-features=WaylandWindowDecorations,WaylandPerSurfaceScale,WaylandUiScale";
+    })
     thunderbird
     teams-for-linux
 

@@ -229,6 +229,7 @@
     enable = true;
     localNetworkGameTransfers.openFirewall = true;
     package = pkgs.steam.override {
+      extraArgs = "-forcedesktopscaling 1.6666666";
       extraEnv = {
         STEAM_FORCE_DESKTOPUI_SCALING = "1.6666666";
       };
