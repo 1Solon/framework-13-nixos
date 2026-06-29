@@ -1,41 +1,5 @@
 {
   "nodes": {
-    "crane": {
-      "locked": {
-        "lastModified": 1780532242,
-        "narHash": "sha256-D+BsdpxmtUwtqGoY0IXPhHgTlmqgcZKCEo1oMyn7ep0=",
-        "owner": "ipetkov",
-        "repo": "crane",
-        "rev": "59a82a1222dd3b2080b5cc52a1a2e8d5f1b77f37",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ipetkov",
-        "repo": "crane",
-        "type": "github"
-      }
-    },
-    "flake-parts": {
-      "inputs": {
-        "nixpkgs-lib": [
-          "hyprshell",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1778716662,
-        "narHash": "sha256-m1Yf0wZ8j1OHjTc2UwHwyQRSnNeSgLJOd7q5Y45hzi4=",
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "rev": "f7c1a2d347e4c52d5fb8d10cb4d94b5884e546fb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -59,27 +23,6 @@
     "home-manager_2": {
       "inputs": {
         "nixpkgs": [
-          "hyprshell",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1781497404,
-        "narHash": "sha256-9GAF8sSsnkyCVCWkomXR0T+zdSxyUlfPt6neQidimdg=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "1285cd3d6882a9847f2d56ed5541b3350c8a6162",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "home-manager_3": {
-      "inputs": {
-        "nixpkgs": [
           "zen-browser",
           "nixpkgs"
         ]
@@ -95,30 +38,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "hyprshell": {
-      "inputs": {
-        "crane": "crane",
-        "flake-parts": "flake-parts",
-        "home-manager": "home-manager_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1782515532,
-        "narHash": "sha256-d3AAXZ5FrDUpthZb7j4JCFwl97ZDujfhW6DRINukM2E=",
-        "owner": "H3rmt",
-        "repo": "hyprswitch",
-        "rev": "e0f3d23f9df749911191f14d6d9182e9d5f3653a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "H3rmt",
-        "ref": "hyprshell",
-        "repo": "hyprswitch",
         "type": "github"
       }
     },
@@ -170,39 +89,42 @@
         "type": "github"
       }
     },
-    "root": {
+    "plasma-manager": {
       "inputs": {
-        "home-manager": "home-manager",
-        "hyprshell": "hyprshell",
-        "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_2",
-        "silentSDDM": "silentSDDM",
-        "zen-browser": "zen-browser"
-      }
-    },
-    "silentSDDM": {
-      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1782613322,
-        "narHash": "sha256-rDFls2ex7YJn6deFgsZak7VaNFuC3nF32S8DIxn3Egc=",
-        "owner": "uiriansan",
-        "repo": "SilentSDDM",
-        "rev": "3948ebe941c03a32a10a74e9bce10c2e267c888a",
+        "lastModified": 1775856943,
+        "narHash": "sha256-b7Mp7P+q2Md5AGt4rjHfMcBykzMumFTen10ST++AuTU=",
+        "owner": "nix-community",
+        "repo": "plasma-manager",
+        "rev": "a524a6160e6df89f7673ba293cf7d78b559eb1a5",
         "type": "github"
       },
       "original": {
-        "owner": "uiriansan",
-        "repo": "SilentSDDM",
+        "owner": "nix-community",
+        "ref": "trunk",
+        "repo": "plasma-manager",
         "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "home-manager": "home-manager",
+        "nixos-hardware": "nixos-hardware",
+        "nixpkgs": "nixpkgs_2",
+        "plasma-manager": "plasma-manager",
+        "zen-browser": "zen-browser"
       }
     },
     "zen-browser": {
       "inputs": {
-        "home-manager": "home-manager_3",
+        "home-manager": "home-manager_2",
         "nixpkgs": [
           "nixpkgs"
         ]

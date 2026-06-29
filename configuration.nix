@@ -108,7 +108,7 @@
     useRoutingFeatures = "client";
   };
 
-  # Enable geolocation services for GNOME
+  # Enable geolocation services for location-aware desktop features.
   services.geoclue2.enable = true;
   services.geoclue2.whitelistedAgents = lib.mkForce [ "geoclue-demo-agent" ];
 
@@ -134,12 +134,23 @@
     LC_TIME = "en_IE.UTF-8";
   };
 
-  # Enable GDM Display Manager for GNOME
-  services.displayManager.gdm.enable = true;
+  # Enable SDDM Display Manager for KDE Plasma.
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
 
-  # Enable GNOME
+  # Enable KDE Plasma.
   services.xserver.enable = true;
-  services.desktopManager.gnome.enable = true;
+  services.desktopManager.plasma6.enable = true;
+
+  # Keep Chromium/Electron and Mozilla apps on the native Wayland path so
+  # fractional display scaling matches KDE/Qt applications.
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+    MOZ_ENABLE_WAYLAND = "1";
+  };
 
   # Configure console keymap
   console.keyMap = "uk";
@@ -151,9 +162,6 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
-
-  # Enable GNOME Keyring PAM integration
-  security.pam.services.gdm.enableGnomeKeyring = true;
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -175,11 +183,11 @@
   hardware.framework.laptop13.audioEnhancement.rawDeviceName =
     lib.mkDefault "alsa_output.pci-0000_c1_00.6.analog-stereo";
 
-  # Enable XDG Desktop Portal for screen/audio sharing in browsers (Wayland/GNOME)
+  # Enable XDG Desktop Portal for screen/audio sharing in browsers (Wayland/KDE).
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
-      xdg-desktop-portal-gnome
+      kdePackages.xdg-desktop-portal-kde
       xdg-desktop-portal-gtk
     ];
     config.common.default = "*";

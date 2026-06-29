@@ -17,7 +17,7 @@ _My NixOS setup for Framework 13 (AMD Ryzen AI 300) with Home Manager and Flakes
 
 # 🧊💻 Framework 13 NixOS Configuration
 
-This repository contains a NixOS configuration tailored for the Framework 13 (AMD Ryzen AI 300 series). It uses Nix Flakes and Home Manager for a reproducible workstation setup with GNOME, Steam, Zen Browser, and 1Password integration.
+This repository contains a NixOS configuration tailored for the Framework 13 (AMD Ryzen AI 300 series). It uses Nix Flakes and Home Manager for a reproducible workstation setup with KDE Plasma, Steam, Zen Browser, and 1Password integration.
 
 ## 📁 Files
 
@@ -53,7 +53,7 @@ cd sauls-framework-13-nixos
 sudo nixos-rebuild switch --flake .#sauls-laptop # Change this to your hostname
 ```
 
-4) Log in and verify GNOME, audio, network, and packages.
+4) Log in and verify KDE Plasma, audio, network, and packages.
 
 Note: This configuration imports `/etc/nixos/hardware-configuration.nix` directly. Keep that file in place, or change the import to a repo-local copy if preferred.
 

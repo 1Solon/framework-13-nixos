@@ -5,6 +5,9 @@
   ...
 }:
 
+let
+  ottoKdeTheme = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.otto-kde-theme;
+in
 {
   home.username = "saul";
   home.homeDirectory = "/home/saul";
@@ -21,6 +24,7 @@
     ./userspace/alacritty.nix
 
     # External imports
+    inputs.plasma-manager.homeModules.plasma-manager
     inputs.zen-browser.homeModules.beta
   ];
 
@@ -77,8 +81,11 @@
     # Tools
     chromium
     ferdium
-    nautilus
-    loupe
+    kdePackages.dolphin
+    kdePackages.gwenview
+    kdePackages.qtstyleplugin-kvantum
+    libsForQt5.qtstyleplugin-kvantum
+    ottoKdeTheme
     playwright
 
     # Office
@@ -103,24 +110,43 @@
 
   ];
 
-  # Enable gnome keyring for managing secrets
-  services.gnome-keyring.enable = true;
-
-  # Enable dark theme for GTK applications
+  # Align GTK applications with KDE Plasma.
   gtk = {
     enable = true;
     theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome-themes-extra;
+      name = "Breeze-Dark";
+      package = pkgs.kdePackages.breeze-gtk;
     };
     iconTheme = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
+      name = "breeze-dark";
+      package = pkgs.kdePackages.breeze-icons;
     };
     gtk4.theme = config.gtk.theme;
   };
 
-  # Configure cursor theme for Wayland/Hyprland
+  qt = {
+    enable = true;
+    platformTheme.name = "kde";
+    style.name = "kvantum";
+  };
+
+  programs.plasma = {
+    enable = true;
+    workspace = {
+      lookAndFeel = "Otto";
+      theme = "Otto";
+      colorScheme = "Otto";
+      widgetStyle = "kvantum";
+      wallpaper = "${ottoKdeTheme}/share/wallpapers/Otto/contents/images/3840x2160.png";
+    };
+  };
+
+  xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
+    [General]
+    theme=Otto
+  '';
+
+  # Configure cursor theme for Wayland.
   home.pointerCursor = {
     name = "Bibata-Modern-Classic";
     package = pkgs.bibata-cursors;
@@ -129,11 +155,4 @@
     x11.enable = true;
   };
 
-  # Set dark theme preference for KDE/GNOME applications
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-      gtk-theme = "Adwaita-dark";
-    };
-  };
 }
