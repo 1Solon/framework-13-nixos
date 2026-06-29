@@ -73,6 +73,10 @@
     "flakes"
   ];
 
+  # Allow editors/tools to run downloaded generic Linux binaries, such as
+  # Zed external agents, which expect /lib64/ld-linux-x86-64.so.2 to exist.
+  programs.nix-ld.enable = true;
+
   # Enable garbage collection
   nix.gc = {
     automatic = true;
