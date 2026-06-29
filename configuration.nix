@@ -63,7 +63,8 @@
   security.pam.services = {
     sudo.fprintAuth = true; # Enable fingerprint for sudo
     su.fprintAuth = true; # Enable fingerprint for su
-    sddm.fprintAuth = false; # Keep for SDDM
+    "gdm-password".fprintAuth = true; # Enable fingerprint for GNOME login
+    "gdm-fingerprint".fprintAuth = true; # Enable fingerprint for GNOME login
     login.fprintAuth = false; # Keep for login
   };
 
@@ -137,18 +138,12 @@
     LC_TIME = "en_IE.UTF-8";
   };
 
-  # Enable SDDM Display Manager for KDE Plasma.
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
-
-  # Enable KDE Plasma.
+  # Enable GNOME.
   services.xserver.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
-  # Keep Chromium/Electron and Mozilla apps on the native Wayland path so
-  # fractional display scaling matches KDE/Qt applications.
+  # Keep Chromium/Electron and Mozilla apps on the native Wayland path.
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
@@ -186,14 +181,10 @@
   hardware.framework.laptop13.audioEnhancement.rawDeviceName =
     lib.mkDefault "alsa_output.pci-0000_c1_00.6.analog-stereo";
 
-  # Enable XDG Desktop Portal for screen/audio sharing in browsers (Wayland/KDE).
+  # Enable XDG Desktop Portal for screen/audio sharing in browsers (Wayland/GNOME).
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [
-      kdePackages.xdg-desktop-portal-kde
-      xdg-desktop-portal-gtk
-    ];
-    config.common.default = "*";
+    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
   };
 
   # Define a user account. Don't forget to set a password with 'passwd'.

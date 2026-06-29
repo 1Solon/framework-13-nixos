@@ -6,9 +6,6 @@
   ...
 }:
 
-let
-  winsurKdeTheme = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.winsur-kde-theme;
-in
 {
   home.username = "saul";
   home.homeDirectory = "/home/saul";
@@ -23,9 +20,6 @@ in
     ./userspace/zsh.nix
     ./userspace/starship.nix
     ./userspace/alacritty.nix
-
-    # External imports
-    inputs.plasma-manager.homeModules.plasma-manager
     inputs.zen-browser.homeModules.beta
   ];
 
@@ -84,11 +78,6 @@ in
     # Tools
     chromium
     ferdium
-    kdePackages.dolphin
-    kdePackages.gwenview
-    kdePackages.qtstyleplugin-kvantum
-    libsForQt5.qtstyleplugin-kvantum
-    winsurKdeTheme
     playwright
 
     # Office
@@ -112,15 +101,4 @@ in
     starsector
 
   ];
-
-  programs.plasma = {
-    enable = true;
-    workspace = {
-      lookAndFeel = "com.github.yeyushengfan258.WinSur-dark";
-      theme = "WinSur-dark";
-      colorScheme = "WinSurDark";
-      widgetStyle = "kvantum";
-      wallpaper = "${winsurKdeTheme}/share/wallpapers/WinSur-dark/contents/images/2560x1440.png";
-    };
-  };
 }
