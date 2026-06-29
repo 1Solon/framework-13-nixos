@@ -23,6 +23,12 @@
     inputs.zen-browser.homeModules.beta
   ];
 
+  dconf.settings."org/gnome/desktop/interface" = {
+    cursor-theme = "Adwaita";
+    icon-theme = "Adwaita";
+    gtk-theme = "Adwaita";
+  };
+
   home.packages = with pkgs; [
     # Editors
     zed-editor
