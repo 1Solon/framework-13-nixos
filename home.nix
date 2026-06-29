@@ -93,7 +93,7 @@
 
     # Communication
     (discord.override {
-      commandLineArgs = "--force-device-scale-factor=1.6666666 --gtk-version=4 --enable-features=WaylandWindowDecorations,WaylandPerSurfaceScale,WaylandUiScale";
+      commandLineArgs = "--force-device-scale-factor=1.2 --gtk-version=4 --enable-features=WaylandWindowDecorations,WaylandPerSurfaceScale,WaylandUiScale";
     })
     thunderbird
     teams-for-linux
