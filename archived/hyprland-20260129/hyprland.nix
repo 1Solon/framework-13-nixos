@@ -129,7 +129,7 @@ in
       gesture = [
         # 3-finger horizontal swipe to switch workspaces
         "3, horizontal, workspace"
-        
+
         # 3-finger swipe up to toggle fullscreen
         "3, up, fullscreen"
       ];

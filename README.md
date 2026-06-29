@@ -10,8 +10,8 @@ _My NixOS setup for Framework 13 (AMD Ryzen AI 300) with Home Manager and Flakes
 
 <div align="center">
 
-![GitHub Repo stars](https://img.shields.io/github/stars/1Solon/sauls-framework-13-nix?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/1Solon/sauls-framework-13-nix?style=for-the-badge)
+![GitHub Repo stars](https://img.shields.io/github/stars/1Solon/framework-13-nixos?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/1Solon/framework-13-nixos?style=for-the-badge)
 
 </div>
 
@@ -37,15 +37,14 @@ This repository contains a NixOS configuration tailored for the Framework 13 (AM
 
 1) Clone the repo:
 ```bash
-git clone https://github.com/1Solon/sauls-framework-13-nixos.git
-cd sauls-framework-13-nixos
+git clone https://github.com/1Solon/framework-13-nixos.git
+cd framework-13-nixos
 ```
 
 2) Review and adjust as needed:
 - Hostname: `configuration.nix` `networking.hostName`
 - Username: `configuration.nix` `users.users` and `home.nix` `home.username`
 - Time zone and locale
-- NFS server/IP and mountpoint
 - Flake outputs name: `flake.nix` `nixosConfigurations.sauls-laptop`
 
 3) Build and switch:
@@ -55,7 +54,7 @@ sudo nixos-rebuild switch --flake .#sauls-laptop # Change this to your hostname
 
 4) Log in and verify KDE Plasma, audio, network, and packages.
 
-Note: This configuration imports `/etc/nixos/hardware-configuration.nix` directly. Keep that file in place, or change the import to a repo-local copy if preferred.
+Note: This configuration includes a repo-local `hardware-configuration.nix` generated for this machine. Regenerate or update it if disk UUIDs or hardware change.
 
 ## 🔄 Updating
 

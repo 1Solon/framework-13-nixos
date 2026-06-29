@@ -3,7 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,6 +14,7 @@
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
     plasma-manager = {
       url = "github:nix-community/plasma-manager/trunk";
@@ -21,6 +25,7 @@
 
   outputs =
     inputs@{
+      self,
       nixpkgs,
       home-manager,
       nixos-hardware,
@@ -107,6 +112,10 @@
         inherit otto-kde-theme winsur-kde-theme;
       };
 
+      formatter.${system} = pkgs.nixfmt-tree;
+
+      checks.${system}.sauls-laptop = self.nixosConfigurations.sauls-laptop.config.system.build.toplevel;
+
       nixosConfigurations = {
         sauls-laptop = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
@@ -121,6 +130,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "backup";
 
               # Make all flake inputs available to home.nix
               home-manager.extraSpecialArgs = { inherit inputs; };

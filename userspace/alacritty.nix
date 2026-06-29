@@ -9,7 +9,7 @@
           y = 5;
         };
       };
-      
+
       font = {
         normal = {
           family = "Monaspace Neon";

@@ -57,6 +57,8 @@ in
     starship
     tmux
     codex
+    opencode
+    opencode-desktop
 
     # Languages & toolchains
     cue

@@ -74,12 +74,12 @@
           actions = [
             {
               label = "󰝟";
-              command = ''wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'';
+              command = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
               type = "toggle";
             }
             {
               label = "󰍭";
-              command = ''wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle'';
+              command = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
               type = "toggle";
             }
             {

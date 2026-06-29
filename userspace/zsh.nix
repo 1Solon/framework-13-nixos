@@ -63,7 +63,7 @@ in
 
     shellAliases = {
       update = "nix flake update --flake /home/saul/sauls-framework-13-nixos";
-      switch = "sudo nixos-rebuild switch --impure --flake /home/saul/sauls-framework-13-nixos#sauls-laptop";
+      switch = "sudo nixos-rebuild switch --flake /home/saul/sauls-framework-13-nixos#sauls-laptop";
       config = "code /home/saul/sauls-framework-13-nixos";
       init-kube = "sync-cluster-configs kube";
       init-talos = "sync-cluster-configs talos";

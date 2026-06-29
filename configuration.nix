@@ -9,7 +9,7 @@
 {
   imports = [
     # Include the results of the hardware scan.
-    /etc/nixos/hardware-configuration.nix
+    ./hardware-configuration.nix
   ];
 
   # Bootloader.
@@ -88,7 +88,6 @@
     dates = "daily";
     randomizedDelaySec = "1h";
     flake = "github:1Solon/framework-13-nixos";
-    flags = [ "--impure" ];
     persistent = true; # Run on next boot if timer was missed
   };
 
@@ -202,16 +201,10 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # Home Manager
-  home-manager.useUserPackages = true;
-  home-manager.useGlobalPkgs = true;
-  home-manager.backupFileExtension = "backup";
 
   # Enable zsh
   programs.zsh.enable = true;
@@ -233,20 +226,8 @@
       text = ''
         .zen-wrapped
       ''; # or just "zen" if you use unwrapped package
-      mode = "0755";
+      mode = "0644";
     };
-  };
-
-  # Mount NFS shares from TrueNAS
-  fileSystems."/home/saul/nfs" = {
-    device = "192.168.1.152:/mnt/STORAGE-01/Media-Storage";
-    fsType = "nfs";
-    options = [
-      "x-systemd.automount"
-      "noauto"
-      "nofail"
-      "x-systemd.mount-timeout=10s"
-    ];
   };
 
   # Enable steam
